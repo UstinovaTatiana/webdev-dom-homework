@@ -9,41 +9,41 @@
 
 <body>
   <div class="container">
-    <ul class="comments">
-      <li class="comment">
-        <div class="comment-header">
-          <div>Глеб Фокин</div>
-          <div>12.02.22 12:18</div>
+    <ul class="comments" id="comments-list"></ul>
+    <li class="comment">
+      <div class="comment-header">
+        <div>Глеб Фокин</div>
+        <div>12.02.22 12:18</div>
+      </div>
+      <div class="comment-body">
+        <div class="comment-text">
+          Это будет первый комментарий на этой странице
         </div>
-        <div class="comment-body">
-          <div class="comment-text">
-            Это будет первый комментарий на этой странице
-          </div>
+      </div>
+      <div class="comment-footer">
+        <div class="likes">
+          <span class="likes-counter">3</span>
+          <button class="like-button"></button>
         </div>
-        <div class="comment-footer">
-          <div class="likes">
-            <span class="likes-counter">3</span>
-            <button class="like-button"></button>
-          </div>
+      </div>
+    </li>
+    <li class="comment">
+      <div class="comment-header">
+        <div>Варвара Н.</div>
+        <div>13.02.22 19:22</div>
+      </div>
+      <div class="comment-body">
+        <div class="comment-text">
+          Мне нравится как оформлена эта страница! ❤
         </div>
-      </li>
-      <li class="comment">
-        <div class="comment-header">
-          <div>Варвара Н.</div>
-          <div>13.02.22 19:22</div>
+      </div>
+      <div class="comment-footer">
+        <div class="likes">
+          <span class="likes-counter">75</span>
+          <button class="like-button -active-like"></button>
         </div>
-        <div class="comment-body">
-          <div class="comment-text">
-            Мне нравится как оформлена эта страница! ❤
-          </div>
-        </div>
-        <div class="comment-footer">
-          <div class="likes">
-            <span class="likes-counter">75</span>
-            <button class="like-button -active-like"></button>
-          </div>
-        </div>
-      </li>
+      </div>
+    </li>
     </ul>
     <div class="add-form">
       <input type="text" class="add-form-name" placeholder="Введите ваше имя" />
@@ -66,11 +66,12 @@
   addButton.addEventListener('click', () => {
     const name = nameInput.value.trim();
     const commentText = commentInput.value.trim();
-    if (name === "|| commentText ===") {
+
+
+    if (name === "" || commentText === "") {
       alert('Пожалуйста, заполните оба поля');
       return;
     }
-
 
     const now = new Date();
     const year = now.getFullYear();
@@ -79,24 +80,24 @@
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
 
-    const currentDateTime = `${year}-${month}-${day}${hours}:${minutes}`;
 
+    const currentDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
     const newCommentHTML = `
-    <li class = "comment">
-      <div class = "comment-header">
-        <div> ${name}</div>
-        <div> ${currentDateTime}</div>
-      </div>
-      <div class = "comment-body">
-        <div class = "comment-text">${commentText}</div>
-      </div>
-        <div class = "comment-footer">
-          <div class = "liks">
-            <span class = "likes-counter"> 0 </span>
-            <button class = "like-button"></button>
+      <li class="comment">
+        <div class="comment-header">
+          <div>${name}</div>
+          <div>${currentDateTime}</div>
+        </div>
+        <div class="comment-body">
+          <div class="comment-text">${commentText}</div>
+        </div>
+        <div class="comment-footer">
+          <div class="likes">
+            <span class="likes-counter">0</span>
+            <button class="like-button"></button>
           </div>
         </div>
-    </li>`;
+      </li>`;
 
     commentsList.innerHTML += newCommentHTML;
 
